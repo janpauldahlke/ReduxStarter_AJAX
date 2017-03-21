@@ -20,6 +20,8 @@ export default class SearchBar extends Component {
       //wieso???
 
       https://stackoverflow.com/questions/42902167/bindings-can-someone-help-me-to-get-this-right
+      //read here
+      https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_objects/Function/bind
     */
 
 
@@ -34,9 +36,20 @@ export default class SearchBar extends Component {
     this.setState({ term: event.target.value});
   }
 
+  //guve onSubmit to form to get control of <form> behavior
+  onFormSubmit(event) {
+    //preventDefault
+    event.preventDefault();
+
+    //fetch data here later
+  }
+
+
   render () {
     return(
-      <form className="input-group">
+      <form
+        onSubmit={ this.onFormSubmit }
+        className="input-group">
 
         <input
           placeholder="forecast your city"
@@ -58,4 +71,9 @@ export default class SearchBar extends Component {
 /*TODO
   refactor form into a controlled field, where
   value of input is set by state of the Component
+*/
+
+/*TODO
+  prevent standard html <form> behavior to post on enter
+  why use form: form brings some advantages, cuz button and enter are onSubmit binded, so we do not need to wirte it ourslfs
 */
