@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
+import { connect} from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-export default class SearchBar extends Component {
+//actions
+import { fetchWeather } from '../actions/index';
+
+class SearchBar extends Component {
 
   constructor(props) {
     super(props);
@@ -27,12 +32,13 @@ export default class SearchBar extends Component {
 
 
     this.onInputChange = this.onInputChange.bind(this);
+    this.onFormSubmit= this.onFormSubmit.bind(this);
   }
 
   //pass (vanilla) event handler
   onInputChange(event) {
 
-    console.log(event.target.value);
+    //console.log(event.target.value);
     this.setState({ term: event.target.value});
   }
 
@@ -40,8 +46,11 @@ export default class SearchBar extends Component {
   onFormSubmit(event) {
     //preventDefault
     event.preventDefault();
-
     //fetch data here later
+    //here now on keydown/submit
+    //see here how to pass arg to fetchWeather
+    this.props.fetchWeather(this.state.term);
+    this.setState({term: ''});
   }
 
 
@@ -67,7 +76,17 @@ export default class SearchBar extends Component {
   }
 }
 
+//connect redux and react-router
+function mapDispatchToProps ( dispatch ) {
+  return bindActionCreators({ fetchWeather }, dispatch);
+}
 
+                      //null, cause mapDispatch needs to be 2nd arg
+                      // reminder, due syntax miserable 5min bug connect(state, dispatch)(Component)
+export default connect(null, mapDispatchToProps)(SearchBar);
+
+
+//-----------------
 /*TODO
   refactor form into a controlled field, where
   value of input is set by state of the Component
@@ -76,4 +95,8 @@ export default class SearchBar extends Component {
 /*TODO
   prevent standard html <form> behavior to post on enter
   why use form: form brings some advantages, cuz button and enter are onSubmit binded, so we do not need to wirte it ourslfs
+*/
+
+/*TODO
+  wire action creator with search bar
 */

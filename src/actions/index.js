@@ -1,4 +1,4 @@
-import axios from 'axois';
+import axios from 'axios';
 
 
 const API_KEY = '99c1bb4595b0ddfe1e5bc12f0b988b3a';
@@ -26,6 +26,8 @@ export function fetchWeather( city ) {
   //AJAX
   //npm install --save axios
   const request = axios.get(url);
+
+  console.log("from action", request);
 
   //actions return actions as object, that ALWAYS has a type
   return {
