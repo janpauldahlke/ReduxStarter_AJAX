@@ -27,9 +27,12 @@ export function fetchWeather( city ) {
   //npm install --save axios
   const request = axios.get(url);
 
-  console.log("from action", request);
+  //console.log("Request", request);
 
   //actions return actions as object, that ALWAYS has a type
+  //redux-promise unwraps the object of request-promise and put it into payload
+  //now its available in reducer
+  //keep in mind middleware flow
   return {
     type: FETCH_WEATHER,
     payload: request
