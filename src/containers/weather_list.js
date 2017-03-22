@@ -15,6 +15,8 @@ class WeatherList extends Component {
     //one should recalc in °Celsisus here
     // C = K - 273.15)
     const temps = cityData.list.map(weather => weather.main.temp = (weather.main.temp-273.15) );
+    const pressure = cityData.list.map(weather => weather.main.pressure);
+    const humidity = cityData.list.map(weather => weather.main.humidity);
 
     console.log(temps);
 
@@ -24,6 +26,16 @@ class WeatherList extends Component {
         <td>{ city }</td>
         <td>
           <Sparklines height={120} width={180} data={temps}>
+            <SparklinesLine color="red"></SparklinesLine>
+          </Sparklines>
+        </td>
+        <td>
+          <Sparklines height={120} width={180} data={pressure}>
+            <SparklinesLine color="yellow"></SparklinesLine>
+          </Sparklines>
+        </td>
+        <td>
+          <Sparklines height={120} width={180} data={humidity}>
             <SparklinesLine color="blue"></SparklinesLine>
           </Sparklines>
         </td>
