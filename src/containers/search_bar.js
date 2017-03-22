@@ -100,3 +100,9 @@ export default connect(null, mapDispatchToProps)(SearchBar);
 /*TODO
   wire action creator with search bar
 */
+
+/*TODO
+  integrate react-spark-lines
+    https://github.com/borisyankov/react-sparklines
+  map to city props
+*/
