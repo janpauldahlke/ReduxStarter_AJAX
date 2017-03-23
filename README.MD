@@ -12,4 +12,5 @@ http://openweathermap.org/forecast5
 - put open key into prject
 
 
-99c1bb4595b0ddfe1e5bc12f0b988b3a
+openweather: 99c1bb4595b0ddfe1e5bc12f0b988b3a
+mapsAPI: AIzaSyDKAL2L5Ll-Iz_G03LrJlCRJ1EDix890Bo

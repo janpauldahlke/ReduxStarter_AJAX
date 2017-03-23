@@ -3,9 +3,18 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Chart from '../components/chart';
+import GoogleMap from '../components/google_map';
+
+import _ from 'lodash';
 
 
+//TODO
+/*
+  add google maps previewn instead of city name
+  create new component to achieve this
 
+  create a new component google_map.js
+*/
 
 class WeatherList extends Component {
 
@@ -16,9 +25,15 @@ class WeatherList extends Component {
     //map all temp in one array
     //one should recalc in °Celsisus here
     // C = K - 273.15)
-    const temps = cityData.list.map(weather => weather.main.temp = (weather.main.temp-273.15) );
+    //theseleads into an error, if called multiple times
+    const temps = _.map(cityData.list.map(weather => weather.main.temp), (temp) => temp - 273.15);
     const pressure = cityData.list.map(weather => weather.main.pressure);
     const humidity = cityData.list.map(weather => weather.main.humidity);
+
+    //const lon = cityData.city.coord.lon;
+    //const lat = cityData.city.coord.lat;
+    //now the ES6 way
+    const { lon, lat } = cityData.city.coord;
 
     console.log(temps);
 
@@ -28,7 +43,9 @@ class WeatherList extends Component {
 
     return (
       <tr key= { city }>
-        <td>{ city }</td>
+        <td>
+          <GoogleMap lon={ lon } lat={ lat }/>
+        </td>
         <td>
           <Chart data={ temps } color="orange" units="°C"/>
         </td>
