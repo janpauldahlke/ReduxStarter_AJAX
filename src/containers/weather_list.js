@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
 
-import { Sparklines, SparklinesLine } from 'react-sparklines';
+import Chart from '../components/chart';
+
+
 
 
 class WeatherList extends Component {
@@ -20,24 +22,15 @@ class WeatherList extends Component {
 
     console.log(temps);
 
+    //TODO
+    //break up re-used Sparklines in multicompnent
+    //toprevent repeating here
 
     return (
       <tr key= { city }>
         <td>{ city }</td>
         <td>
-          <Sparklines height={120} width={180} data={temps}>
-            <SparklinesLine color="red"></SparklinesLine>
-          </Sparklines>
-        </td>
-        <td>
-          <Sparklines height={120} width={180} data={pressure}>
-            <SparklinesLine color="yellow"></SparklinesLine>
-          </Sparklines>
-        </td>
-        <td>
-          <Sparklines height={120} width={180} data={humidity}>
-            <SparklinesLine color="blue"></SparklinesLine>
-          </Sparklines>
+          <Chart data={temps} color="orange"/>
         </td>
       </tr>
     );
